@@ -1,0 +1,12 @@
+//EstadoRiego.h
+#ifndef ESTADO_RIEGO_H
+#define ESTADO_RIEGO_H
+
+enum EstadoRiego{
+  ESTADO_INICIO,
+  ESTADO_LECTURA,
+  ESTADO_CONTROL,
+  ESTADO_ENVIO,
+  ESTADO_COMUNICACION,
+}; 
+#endif   
