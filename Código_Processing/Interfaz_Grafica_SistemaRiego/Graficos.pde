@@ -20,10 +20,10 @@ void MostrarSensores(){
     fill(40);
     textSize(14);
     textAlign(LEFT,TOP);
-    text("Temperatura: "+nf(Temperatura,0,2)+"°C",BoxX+12,BoxY+12);
+    text("Temperatura: "+nf(Temperatura,0,2)+"°C",BoxX+12,BoxY+12);//nf()formato de número con dos decimales.
     text("Humedad ambiente: "+nf(HumedadAire,0,2)+"%",BoxX+12,BoxY+40);
     text("Humedad del Suelo: "+nf(HumedadSuelo,0,2)+"%",BoxX+12,BoxY+68);
-    
+    //Barra gráfica de humedad del suelo y aire.
     int BarraX=BoxX+12;
     int BarraY=BoxY+110;
     int BarraW=BoxW-24;
@@ -39,16 +39,17 @@ void MostrarSensores(){
 }
 void DibujarBarra(int x, int y, int bw, int bh, float valor){
     noStroke();//Desactivar los bordes
-    fill(230);
+    fill(230);//Color de los contornos.
     rect(x,y,bw,bh,6);
-    float wFill=constrain(map(valor,0,100,0,bw),0,bw);
+    float wFill=constrain(map(valor,0,100,0,bw),0,bw);//Convierte porcentajes a píxeles.
     fill(100,180,255);
-    rect(x,y,wFill,bh,6);
+    rect(x,y,wFill,bh,6);//Barra coloreada.
     fill(20);
     textAlign(RIGHT,CENTER);
-    text(nf(valor,0,2)+"%",x+bw-6,y+bh/2);
+    text(nf(valor,0,2)+"%",x+bw-6,y+bh/2);//Texto indicando los valores.
 }
 void MostrarControles(){
+    //Dibuja un cuadro contenedor de los controles.   
     int ControlX=width-220;
     int ControlY=70;
     int ControlW=200;
@@ -60,26 +61,26 @@ void MostrarControles(){
     fill(40);
     textSize(14);
     textAlign(LEFT,TOP);
-    text("Controles",ControlX+12,ControlY+12);
+    text("Controles",ControlX+12,ControlY+12);//Titulo.
     boolean auto= Modo.equalsIgnoreCase("AUTO");
     int ToggleX=ControlX+12;
     int ToggleY=ControlY+50;
     int ToggleW=ControlW-24;
     int ToggleH=36;
-    
     stroke(180);
+    
     fill(245);
-    rect(ToggleX,ToggleY,ToggleW,ToggleH,6);
-    fill(auto ? color(250,255,200):color(255,200,200));
+    rect(ToggleX,ToggleY,ToggleW,ToggleH,6);//Dibuja un rectángulo dividido en dos secciones.Izquiera AUTO, derecha MANUAL.
+    fill(auto ? color(250,255,200):color(255,200,200));//Se ilumina la parte seleccionada de un color u otro.
     int indW=ToggleW/2-4;
-    int indX=ToggleX+(auto ? 2:ToggleW/2+2);
+    int indX=ToggleX+(auto ? 2:ToggleW/2+2);//Se mueve el indicador deslizante.
     rect(indX,ToggleY+2,indW,ToggleH-4,6);
     fill(20);
     textAlign(CENTER,CENTER);
     textSize(12);
     text("AUTO", ToggleX+ToggleW*0.25,ToggleY+ToggleH/2);
     text("MANUAL",ToggleX+ToggleW*0.75,ToggleY+ToggleH/2);
-    
+    //Boton de la bomba manual.
     int BotonBX=ToggleX;
     int BotonBY=ToggleY+ToggleH+20;
     int BotonBW=ToggleW;
@@ -99,7 +100,7 @@ void MostrarControles(){
     }
     else{
         if(BombaEncendida)fill(255,180,180);
-        else fill(200,255,200);
+        else fill(200,255,200);//Cambia el color segun el estado de la bomba.
         stroke(160);
         rect(BotonBX,BotonBY,BotonBW,BotonBH,6);
         fill(30);
@@ -113,22 +114,16 @@ void MostrarControles(){
     text("Modo actual: "+ Modo,ControlX+12,ControlY+ControlH-48);
     text("Bomba: "+ (BombaEncendida ? "ENCENDIDA":"APAGADA"),ControlX+12,ControlY+ControlH-28);
     
-    // Botón para abrir CSV
-    fill(50, 100, 200);
-    rect(btnX, btnY, btnW, btnH, 10);
-
-    fill(255);
-    textSize(16);
-    text("Abrir historial", btnX + 15, btnY + 26);
+   
 }
 void MostrarFecha(){
     fill(80);
     textSize(12);
     textAlign(RIGHT,CENTER);
     String FechaHora=nf(day(),2)+"/"+nf(month(),2)+"/"+year()+" "+nf(hour(),2)+":"+nf(minute(),2)+":"+nf(second(),2);
-    text(FechaHora,width-20,height-12);
+    text(FechaHora,width-20,height-12);//Se muestran la fecha y hora del sistema y se coloca abajo a la derecha.
 }
-void mousePressed(){
+void mousePressed(){//Detecta los clicks.
     int ClickX=width-220;
     int ClickY=70;
     int ToggleX=ClickX+12;
@@ -157,10 +152,6 @@ void mousePressed(){
         if(BombaEncendida) sendSerial("ON\n");
         else sendSerial("OFF\n");
     }
-    if (mouseX > btnX && mouseX < btnX + btnW &&
-        mouseY > btnY && mouseY < btnY + btnH) {
-
-        AbrirArchivoCSV();
-    }
+  
 }
     

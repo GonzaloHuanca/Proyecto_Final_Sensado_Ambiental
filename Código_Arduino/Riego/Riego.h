@@ -1,8 +1,8 @@
-#ifndef RIEGO_H// Si no est√° definido RIEGO_H lo siguiente se procesar√°.
+#ifndef RIEGO_H// Si no est· definido RIEGO_H lo siguiente se procesar·.
 #define RIEGO_H// Se define RIEGO_H, de tal manera que el compilador solo lo procese una vez.
 #include <Arduino.h>
-#include <DHT.h>//Librer√≠a del sensor DHT22
-#include <EEPROM.h>//permite leer y escribir datos en la memoria EERPROM (memoria no vol√°til) de arduino.
+#include <DHT.h>//LibrerÌa del sensor DHT22
+
 
 class Riego{
     private:
@@ -10,7 +10,7 @@ class Riego{
         int PinSensorSuelo;
         int PinRele;
         int PinDHT;
-    DHT dht;// Crea un objeto DHT para facilitar el llamado de funciones propias de la librer√≠a. 
+    DHT dht;// Crea un objeto DHT para facilitar el llamado de funciones propias de la librerÌa. 
     //Lectura de sensores.
     float HumedadSuelo;
     float HumedadAire;
@@ -20,8 +20,8 @@ class Riego{
     int HumedadSueloAlta;
     //Control de bomba.
     bool BombaEncendida;// Guarda el estado de la bomba.
-    bool ModoAutomatico;// Indica si el manejo de la bomba ser√° automatico o manual. 
-    //Variables para temporizaci√≥n.
+    bool ModoAutomatico;// Indica si el manejo de la bomba ser· autom·tico o manual. 
+    //Variables para temporizaciÛn.
     unsigned long TiempoAnterior;
     unsigned long IntervaloEnvio;
 
@@ -34,8 +34,6 @@ public:
     void ControlarBomba();
     void EnviarDatos();
     void LeerComandos();
-    void GuardarDatosEEPROM();
-    void MostrarDatosEEPROM();
     float AccederHumedadSuelo();
     float AccederTemperatura();
     float AccederHumedadAire();
@@ -43,5 +41,5 @@ public:
 	void ApagarBomba();
 };
 
-#endif//Fin del c√≥digo protegido. 
+#endif//Fin del cÛdigo protegido. 
 
