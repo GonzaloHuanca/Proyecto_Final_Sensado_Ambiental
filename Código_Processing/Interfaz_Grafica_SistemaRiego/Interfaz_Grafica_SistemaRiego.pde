@@ -22,7 +22,6 @@ void settings() {
 }
 void setup(){
     
-
     surface.setTitle("Sistema Riego-Interfaz");// Nombre del programa
     f=createFont("Arial",14);//Creo una fuente
     textFont(f);//Establece la fuente para usar en los textos.
@@ -45,7 +44,6 @@ void setup(){
     } catch (IOException e) {
         println("Error al abrir archivo CSV: " + e);
     }       
-        
 }
 void draw(){
     background(245);//Color del fondo de la ventana.
